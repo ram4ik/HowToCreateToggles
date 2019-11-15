@@ -9,8 +9,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var notificationOn = false
+    
     var body: some View {
-        Text("Hello World")
+        VStack {
+            Toggle(isOn: $notificationOn) {
+                Text("Notification Switch")
+            }.padding()
+            
+            if notificationOn {
+                Text("Notification turned on.")
+            } else {
+                Text("Notification turned off.")
+            }
+        }
     }
 }
 
