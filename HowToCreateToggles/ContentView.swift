@@ -8,11 +8,40 @@
 
 import SwiftUI
 
+struct ProfileImageView: View {
+    var imageName: String
+    
+    var body: some View {
+        Image(imageName)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: 200, height: 200)
+            .clipShape(Circle())
+    }
+}
+
+struct ProfileHeaderView: View {
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                ProfileImageView(imageName: "cat1")
+                ProfileImageView(imageName: "cat2")
+                ProfileImageView(imageName: "cat3")
+                ProfileImageView(imageName: "cat4")
+                ProfileImageView(imageName: "cat5")
+            }
+        }
+    }
+}
+
 struct ContentView: View {
     @State private var notificationOn = false
     
     var body: some View {
         VStack {
+            ProfileHeaderView()
+                .opacity(self.notificationOn ? 1 : 0.1)
+               
             Toggle(isOn: $notificationOn) {
                 Text("Notification Switch")
             }.padding()
